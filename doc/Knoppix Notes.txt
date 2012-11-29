@@ -1,0 +1,66 @@
+Use USB ports next to video out for keyboard or no worky
+Hold Option key on Mac to select boot disk, type 'knoppix' at boot:
+
+Config new flash disk:
+  Use Knoppix CD or Universal-USB-Installer to install Knoppix (6.7.1) (prefs > Install to flash)
+  During first run after install, select 3000 as size of persistent storage (need this?)
+  Copy /knoppix-data.img into new disk
+  Copy /syslinux.cfg into new disk
+
+
+Access BIOS via DEL key during ZOTAC splash (hold? see numlock indicator?)
+ - In Chipset > Southbridge, set "Restore on AC Power Loss" to Power On
+
+Boot: knoppix no3d screen=1024x768 xmodule=nv
+
+Disable screensaver using control panel
+
+Edit /etc/network/interfaces, add
+
+  auto wlan0
+  iface wlan0 inet dhcp
+    wpa-ssid MoJoNation
+    wpa-psk "get your mojo"
+
+(Or use Config-Wifi.sh + interfaces.src)
+
+Edit /mnt-system/boot/syslinux/syslinux.cfg in KNOPPIX 
+ - Change DEFAULT to knoppix
+ - Add no3d xmodule=nv to APPEND line for knoppix
+
+
+Iceweasel:
+ - Version = 6.0.2
+ - R-kiosk 0.9.0 to go into kiosk mode
+ - Desktop icon that runs iceweasel -safe-mode to enable debugging/setting URL
+ - Disable popup blocking in preferences
+ - about:config =>
+	app.update.auto => false
+	app.update.enabled => false
+	browser.safebrowsing.enabled => false
+	browser.sessionstore.max_resumed_crashes => 0
+	browser.sessionstore.resume_from_crash => false
+	browser.sessionhistory.max_entries => 1
+	browser.tabs.warnOnClose => false
+	browser.warnOnQuit => false
+	general.warnOnAboutConfig => false
+
+
+Startup:
+Create LXDE startup script /etc/xdg/autostart/iceweasel.desktop:
+
+[Desktop Entry]
+Name=Iceweasel
+Comment=Start web browser for kiosk
+Exec=/usr/bin/iceweasel
+Terminal=false
+Type=Application
+
+
+Mouse:
+Install unclutter package using Synaptics package manager from start menu, have to update first to find it.  Reboot, and no cursor shown if no mouse movement
+
+
+Cron:
+ - enable cron by adding " cron" to end of SERVICES line in /etc/rc.local
+ - every 5 minutes, run /home/knoppix/monitor.sh

@@ -1,0 +1,20 @@
+Intel NM10 chipset (ATOM D525, nVidia ION Graphic, DDR3) Mini PC Box
+
+AMI BIOS
+
+
+A1690505.ROM		BIOS for NM10, ATOM, nVidia ION, Mini PC Box
+			* With STR (Suspend-To-RAM)
+			* With Hardware Monitor 
+			* With LAN on board
+			* With HD Audio
+			* Zotac ZBOX Full Screen Powerup Logo
+
+.8Mbit Flash
+.2011/March built core 
+.Initial mass production release
+(March / 2011)
+
+.8Mbit Flash
+.2011/May update
+(May / 2011)
